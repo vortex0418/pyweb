@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}
+  Polls - 설문조사
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container my-3">
+         <h4 class="border-bottom py-2">설문 목록</h4>
+        <div class="row">
+            {% if question_list %}
+                {% for question in question_list %}
+                <div class="col-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-text" style="line-height:2rem">
+                                {{ question.question_text }}
+                            </div>
+                            <a href="{% url 'polls:poll_detail' question.id %}"
+                               class="btn btn-primary mt-5">투표하기 &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>설문이 없습니다.</p>
+            {% endif %}
+        </div>
+        <div class="poll_list"></div>
+    </div>
+    <!--
+    <div class="container my-3">
+       <h4 class="border-bottom py-2">설문 목록</h4>
+       <div class="row">
+           <div class="col-4 my-3">
+               <div class="card">
+                   <div class="card-body">
+                       <div class="card-text" style="line-height:2rem">
+                           당신이 접종받은 코로나 백신의 종류를 선택해 주세요.
+                       </div>
+                       <a href="/polls/1/"
+                          class="btn btn-primary mt-5">투표하기 &raquo;</a>
+                   </div>
+               </div>
+           </div>
+           <div class="col-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-text" style="line-height:2rem">
+                                4차 산업중 가장 중요하다고 생각하는 분야를 선택해 보세요
+                            </div>
+                            <a href="/polls/2/"
+                               class="btn btn-primary mt-5">투표하기 &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-text" style="line-height:2rem">
+                                당신의 취미나 특기에 해당되는 것을 선택해 주세요.
+                            </div>
+                            <a href="/polls/3/"
+                               class="btn btn-primary mt-5">투표하기 &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+    </div>-->
+        <!--
+        {% if question_list %}
+        {% for question in question_list %}
+        <a href="{% url 'polls:poll_detail' question.id %}">투표하기 &raquo;</a>
+        {% endfor %}
+        {% else %}
+        <p>설문이 없습니다.</p>
+        {% endif %}
+        -->
+</section>
+{% endblock %}

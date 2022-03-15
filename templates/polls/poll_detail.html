@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    Polls - 설문조사
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container my-3">
+        <h4 class="border-bottom py-2">투표 하기</h4>
+        <div class="card my-3">
+        <form action="{% url 'polls:vote' question.id %}" method="post" style="width:500px; margin:20px 120px;">
+            {% csrf_token %}  <!-- 필수 입력(보안) -->
+            <fieldset>
+                <legend>{{ question.question_text }}</legend>
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                {% for choice in question.choice_set.all %}
+                <p style="line-height:1.3rem">
+                    <input type="radio" name="choice" value="{{ choice.id }}">
+                    <label>{{ choice.choice_text }}</label>
+                </p>
+                {% endfor %}
+            </fieldset>
+            <button type="submit" class="btn btn-success">투표</button>
+        </form>
+        <div class="poll_detail"></div>
+        </div>
+    </div>
+
+{% endblock %}
