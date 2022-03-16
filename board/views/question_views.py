@@ -48,3 +48,4 @@ def question_delete(request, question_id):
     # question = Question.objects.get(id=question_id)
     question.delete()     #해당 질문 삭제
     return redirect('board:boardlist')  # 질문 목록
+
